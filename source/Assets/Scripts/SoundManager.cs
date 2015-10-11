@@ -154,6 +154,16 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Restarts the whole music cycle in order to start from the beginning.
+    /// Sets the next track to the first one and removes the clip reference.
+    /// </summary>
+    public void RestartMusic()
+    {
+        _nextTrack = 0;
+        musicSource.clip = null;
+    }
+
+    /// <summary>
     /// Changes the music track for the next one in the playlist.
     /// </summary>
     private void ChangeTrack()
