@@ -4,22 +4,11 @@ using System.Collections;
 
 public class InGameUI : MonoBehaviour
 {
-    /// <summary>
-    /// Static instance of the class.
-    /// </summary>
     public static InGameUI Instance = null;
-
-    /// <summary>
-    /// Current level text reference.
-    /// </summary>
     public Text currentLevelText;
-
-    /// <summary>
-    /// Quantity of lifes text reference.
-    /// </summary>
     public Text lifesQuantityText;
 
-    protected void Awake()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -50,19 +39,11 @@ public class InGameUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Updates the lifes quantity on the UI.
-    /// </summary>
-    /// <param name="lifesQuantity">The quantity of lifes left.</param>
     public void UpdateLifesQuantity(int lifesQuantity)
     {
         lifesQuantityText.text = lifesQuantity.ToString();
     }
 
-    /// <summary>
-    /// Updates the current level on the UI.
-    /// </summary>
-    /// <param name="level">The level to be shown.</param>
     public void UpdateCurrentLevel(int level)
     {
         currentLevelText.text = level.ToString();

@@ -3,10 +3,7 @@ using System.Collections;
 
 public class Brick : MonoBehaviour
 {
-    /// <summary>
-    /// Particles to be used on destroy.
-    /// </summary>
-    public GameObject explosion;
+    public GameObject explosion; // Particles to be used on destroy.
 
     void OnCollisionEnter(Collision collision)
     {

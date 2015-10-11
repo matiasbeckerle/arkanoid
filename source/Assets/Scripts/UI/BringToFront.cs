@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BringToFront : MonoBehaviour
 {
-    protected void OnEnable()
+    void OnEnable()
     {
         transform.SetAsLastSibling();
     }

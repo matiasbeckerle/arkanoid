@@ -4,69 +4,57 @@ using System.Reflection;
 [assembly: AssemblyVersion("0.1.1.*")]
 public class Loader : MonoBehaviour
 {
-    /// <summary>
-    /// DebugUI prefab to instantiate.
-    /// </summary>
+    // DebugUI prefab to instantiate.
     [SerializeField]
-    private GameObject _debugUI;
+    GameObject debugUI;
 
-    /// <summary>
-    /// ModalDialog prefab to instantiate.
-    /// </summary>
+    // ModalDialog prefab to instantiate.
     [SerializeField]
-    private GameObject _modalDialog;
+    GameObject modalDialog;
 
-    /// <summary>
-    /// MainMenu prefab to instantiate.
-    /// </summary>
+    // MainMenu prefab to instantiate.
     [SerializeField]
-    private GameObject _mainMenu;
+    GameObject mainMenu;
 
-    /// <summary>
-    /// InGameUI prefab to instantiate.
-    /// </summary>
+    // InGameUI prefab to instantiate.
     [SerializeField]
-    private GameObject _inGameUI;
+    GameObject inGameUI;
 
-    /// <summary>
-    /// SoundManager prefab to instantiate.
-    /// </summary>
+    // SoundManager prefab to instantiate.
     [SerializeField]
-    private GameObject _soundManager;
+    GameObject soundManager;
 
-    /// <summary>
-    /// GameManager prefab to instantiate.
-    /// </summary>
+    // GameManager prefab to instantiate.
     [SerializeField]
-    private GameObject _gameManager;
+    GameObject gameManager;
 
-    protected void Awake()
+    void Awake()
     {
         // Check if the instances have already been assigned to static variables or they are still null.
 
         if (DebugUI.Instance == null)
         {
-            Instantiate(_debugUI);
+            Instantiate(debugUI);
         }
         if (ModalDialog.Instance == null)
         {
-            Instantiate(_modalDialog);
+            Instantiate(modalDialog);
         }
         if (MainMenu.Instance == null)
         {
-            Instantiate(_mainMenu);
+            Instantiate(mainMenu);
         }
         if (InGameUI.Instance == null)
         {
-            Instantiate(_inGameUI);
+            Instantiate(inGameUI);
         }
         if (SoundManager.Instance == null)
         {
-            Instantiate(_soundManager);
+            Instantiate(soundManager);
         }
         if (GameManager.Instance == null)
         {
-            Instantiate(_gameManager);
+            Instantiate(gameManager);
         }
     }
 }
