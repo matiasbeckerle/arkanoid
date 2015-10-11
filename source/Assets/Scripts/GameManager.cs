@@ -160,6 +160,7 @@ public class GameManager : MonoBehaviour
         _level = 0;
         _lifes = initialLifes;
         _gameStarted = true;
+        SoundManager.Instance.RestartMusic();
     }
 
     /// <summary>
