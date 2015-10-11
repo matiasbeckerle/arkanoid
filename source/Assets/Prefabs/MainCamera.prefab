@@ -135,12 +135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7796f5d3fe847e4a8f609d341068483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugUI: {fileID: 120932, guid: 4ebdf183b6566d1468334c2470efdf99, type: 2}
-  _modalDialog: {fileID: 148778, guid: 94ad47f334868be438a11a0c0ba7bea2, type: 2}
-  _mainMenu: {fileID: 159194, guid: c67b4696c87f294459efea6aa3260c82, type: 2}
-  _inGameUI: {fileID: 189048, guid: eaa19ab61e9e109469cefb80038aa2f6, type: 2}
-  _soundManager: {fileID: 178954, guid: 6663748af11fb344bbaab74e21e2cb2f, type: 2}
-  _gameManager: {fileID: 146874, guid: cdc624603eae78e4990c2c9ebddcaa83, type: 2}
+  debugUI: {fileID: 120932, guid: 4ebdf183b6566d1468334c2470efdf99, type: 2}
+  modalDialog: {fileID: 148778, guid: 94ad47f334868be438a11a0c0ba7bea2, type: 2}
+  mainMenu: {fileID: 159194, guid: c67b4696c87f294459efea6aa3260c82, type: 2}
+  inGameUI: {fileID: 189048, guid: eaa19ab61e9e109469cefb80038aa2f6, type: 2}
+  soundManager: {fileID: 178954, guid: 6663748af11fb344bbaab74e21e2cb2f, type: 2}
+  gameManager: {fileID: 146874, guid: cdc624603eae78e4990c2c9ebddcaa83, type: 2}
 --- !u!114 &11485934
 MonoBehaviour:
   m_ObjectHideFlags: 1
