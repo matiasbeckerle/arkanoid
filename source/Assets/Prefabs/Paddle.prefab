@@ -55,9 +55,10 @@ GameObject:
   - 33: {fileID: 3307966}
   - 65: {fileID: 6548344}
   - 23: {fileID: 2312282}
+  - 54: {fileID: 5408468}
   - 114: {fileID: 11492270}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Paddle
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,13 +144,13 @@ MeshRenderer:
   m_GameObject: {fileID: 163650}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: 1ac1d0f6b14a0aa4abe6f7261be35463, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
@@ -167,7 +168,7 @@ MeshRenderer:
   m_GameObject: {fileID: 118448}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: 9af39ace04b5554419718a11c8ecd657, type: 2}
   m_SubsetIndices: 
@@ -197,6 +198,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118448}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &5408468
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163650}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 108
+  m_CollisionDetection: 0
 --- !u!54 &5415116
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -243,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialVelocity: 500
+  sparks: {fileID: 193340, guid: 5edea68c6a721364bb138043834d7703, type: 2}
   brickExplosionSound1: {fileID: 8300000, guid: 798b1f2724b918441a5dacae15898303,
     type: 3}
   brickExplosionSound2: {fileID: 8300000, guid: ef4ad7bb1094a404da0829ba0eadd3bb,
@@ -251,7 +268,6 @@ MonoBehaviour:
     type: 3}
   wallHitSound1: {fileID: 8300000, guid: 69970ff006c9f254d8a16863e7d863c5, type: 3}
   wallHitSound2: {fileID: 8300000, guid: fff8d7d802507ca48b20b26eefe80a37, type: 3}
-  sparks: {fileID: 193340, guid: 5edea68c6a721364bb138043834d7703, type: 2}
 --- !u!114 &11434382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -373,7 +389,7 @@ MonoBehaviour:
   boundary:
     xMin: -9.5
     xMax: 9.5
-  speed: .5
+  speed: 20
 --- !u!124 &12449752
 Behaviour:
   m_ObjectHideFlags: 1
@@ -459,6 +475,34 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: shakeDecreaseFactor
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

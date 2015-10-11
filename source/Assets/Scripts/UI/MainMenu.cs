@@ -10,8 +10,6 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public enum MenuPanel { Main, About };
 
-
-
     /// <summary>
     /// Static instance of the class.
     /// </summary>

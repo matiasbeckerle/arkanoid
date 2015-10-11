@@ -3,78 +3,133 @@ using System.Collections;
 
 public class Ball : MonoBehaviour
 {
+    /// <summary>
+    /// Initial force to apply over the ball as constant from the first level.
+    /// </summary>
     public float initialVelocity = 500f;
-    public AudioClip brickExplosionSound1;
-    public AudioClip brickExplosionSound2;
-    public AudioClip brickExplosionSound3;
-    public AudioClip wallHitSound1;
-    public AudioClip wallHitSound2;
+
+    /// <summary>
+    /// Sparks particle prefab to instantiate on collisions.
+    /// </summary>
     public GameObject sparks;
 
-    private Rigidbody rb;
-    private float initialVelocityPerLevel;
-    private CameraShake shaker;
+    /// <summary>
+    /// Sound to reproduce on brick explosion.
+    /// </summary>
+    public AudioClip brickExplosionSound1;
 
-    private Camera mainCamera;
-    private Camera ballCamera;
-    private bool cameraSwitchEnabled = false;
+    /// <summary>
+    /// Sound to reproduce on brick explosion.
+    /// </summary>
+    public AudioClip brickExplosionSound2;
 
-    void Awake()
+    /// <summary>
+    /// Sound to reproduce on brick explosion.
+    /// </summary>
+    public AudioClip brickExplosionSound3;
+
+    /// <summary>
+    /// Sound to reproduce on wall hit.
+    /// </summary>
+    public AudioClip wallHitSound1;
+
+    /// <summary>
+    /// Sound to reproduce on wall hit.
+    /// </summary>
+    public AudioClip wallHitSound2;
+
+    /// <summary>
+    /// Rigidbody's reference.
+    /// </summary>
+    private Rigidbody _rigidbody;
+
+    /// <summary>
+    /// Force to apply over the ball on per level.
+    /// </summary>
+    private float _initialVelocityPerLevel;
+
+    /// <summary>
+    /// CameraShake effect script reference.
+    /// </summary>
+    private CameraShake _shaker;
+
+    /// <summary>
+    /// Main camera's reference.
+    /// </summary>
+    private Camera _mainCamera;
+
+    /// <summary>
+    /// Ball camera's reference.
+    /// </summary>
+    private Camera _ballCamera;
+
+    /// <summary>
+    /// Flag to know when the camera switching could be possible.
+    /// </summary>
+    private bool _cameraSwitchEnabled = false;
+
+    protected void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        shaker = GetComponent<CameraShake>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _shaker = GetComponent<CameraShake>();
 
         // Each level adds a little bit of velocity to make it challenger.
         // TODO: review this.
-        initialVelocityPerLevel = initialVelocity + (50 * GameManager.Instance.GetCurrentLevel());
+        _initialVelocityPerLevel = initialVelocity + (50 * GameManager.Instance.GetCurrentLevel());
 
         SetupCameras();
     }
 
-    void Update()
+    protected void Update()
     {
         if (Input.GetAxisRaw("Fire1") != 0)
         {
             if (!GameManager.Instance.IsPlaying())
             {
-                cameraSwitchEnabled = false;
+                _cameraSwitchEnabled = false;
                 Invoke("EnableCameraSwitch", 1);
 
                 GameManager.Instance.SetPlaying(true);
                 transform.parent = null;
-                rb.isKinematic = false;
+                _rigidbody.isKinematic = false;
 
                 // Add some natural force.
-                rb.AddForce(new Vector3(initialVelocityPerLevel, initialVelocityPerLevel, 0));
+                _rigidbody.AddForce(new Vector3(_initialVelocityPerLevel, _initialVelocityPerLevel, 0));
 
                 // Add some rotation.
-                rb.AddTorque(new Vector3(7, 7, 7));
+                _rigidbody.AddTorque(new Vector3(7, 7, 7));
             }
-            else if (cameraSwitchEnabled)
+            else if (_cameraSwitchEnabled)
             {
-                mainCamera.enabled = false;
-                ballCamera.enabled = true;
+                _mainCamera.enabled = false;
+                _ballCamera.enabled = true;
             }
         }
         else
         {
-            ballCamera.enabled = false;
-            mainCamera.enabled = true;
+            _ballCamera.enabled = false;
+            _mainCamera.enabled = true;
         }
     }
 
-    void SetupCameras()
+    /// <summary>
+    /// Saves a reference for each camera.
+    /// </summary>
+    private void SetupCameras()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        ballCamera = transform.Find("BallCamera").GetComponent<Camera>();
+        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        _ballCamera = transform.Find("BallCamera").GetComponent<Camera>();
     }
 
-    void EnableCameraSwitch()
+    /// <summary>
+    /// Enables camera switching.
+    /// </summary>
+    private void EnableCameraSwitch()
     {
-        cameraSwitchEnabled = true;
+        _cameraSwitchEnabled = true;
     }
 
-    void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Brick")
         {
@@ -82,7 +137,7 @@ public class Ball : MonoBehaviour
         }
         else
         {
-            shaker.Shake(1);
+            _shaker.Shake(1);
 
             // Add sparks particles and removes it after some seconds.
             var sparksInstance = Instantiate(sparks, gameObject.transform.position, gameObject.transform.rotation);
@@ -92,11 +147,11 @@ public class Ball : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    protected void OnDestroy()
     {
-        if (mainCamera != null)
+        if (_mainCamera != null)
         {
-            mainCamera.enabled = true;
+            _mainCamera.enabled = true;
         }
     }
 }

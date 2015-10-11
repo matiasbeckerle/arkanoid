@@ -3,15 +3,29 @@ using System.Collections;
 
 public class CameraShake : MonoBehaviour
 {
+    /// <summary>
+    /// Shake amount.
+    /// </summary>
     public float shakeAmount = 0.1f;
+
+    /// <summary>
+    /// Shake decrease factor.
+    /// </summary>
     public float shakeDecreaseFactor = 1f;
 
-    private GameObject mainCamera;
-    private bool isShaking;
+    /// <summary>
+    /// MainCamera's reference.
+    /// </summary>
+    private GameObject _mainCamera;
+
+    /// <summary>
+    /// Flag to know when the camera is shaking.
+    /// </summary>
+    private bool _isShaking;
 
     void Awake()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     /// <summary>
@@ -20,7 +34,7 @@ public class CameraShake : MonoBehaviour
     /// <param name="duration">Seconds to end the movement.</param>
     public void Shake(float duration)
     {
-        if (!isShaking)
+        if (!_isShaking)
         {
             StartCoroutine(ShakeItOff(duration));
         }
@@ -34,17 +48,17 @@ public class CameraShake : MonoBehaviour
     IEnumerator ShakeItOff(float duration)
     {
         // One shake at the time.
-        isShaking = true;
+        _isShaking = true;
 
         // Keep a reference of the current position.
-        Vector3 cameraOriginalPosition = mainCamera.transform.position;
+        Vector3 cameraOriginalPosition = _mainCamera.transform.position;
 
         float elapsed = 0f;
 
         while (elapsed < duration)
         {
             // Shake the camera.
-            mainCamera.transform.localPosition += Random.insideUnitSphere * shakeAmount * elapsed;
+            _mainCamera.transform.localPosition += Random.insideUnitSphere * shakeAmount * elapsed;
 
             // Increase the elapsed time of camera being shake.
             elapsed += Time.deltaTime * shakeDecreaseFactor;
@@ -53,8 +67,8 @@ public class CameraShake : MonoBehaviour
         }
 
         // Back to the original position.
-        mainCamera.transform.localPosition = cameraOriginalPosition;
+        _mainCamera.transform.localPosition = cameraOriginalPosition;
 
-        isShaking = false;
+        _isShaking = false;
     }
 }
